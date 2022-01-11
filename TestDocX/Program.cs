@@ -16,32 +16,23 @@ namespace TestDocX
             string pathDocumento = path + "/edocs/SDAT-11_2022.docx";
             var documento = DocX.Load(pathDocumento);
 
+            InsertarFolioALaDerecha(documento, folio);
+        }
+
+        static void InsertarFolioALaDerecha(DocX documento, string folio)
+        {
+            Console.WriteLine("Insertando folio en la esquina superior derecha.....");
             documento.DifferentFirstPage = false;
             documento.DifferentOddAndEvenPages = false;
-
-            //Formatting textFormat = new Formatting();
-            //textFormat.Bold = true;
-            //textFormat.Size = 12;
-            //textFormat.FontFamily = new Font(@"Arial");
-
-            //var p = documento.InsertParagraph(folio, false, textFormat);
-            //p.Alignment = Alignment.right;
 
             var p = documento.Paragraphs.First().InsertParagraphBeforeSelf(documento.InsertParagraph());
             p.Append(folio).Bold().FontSize(12).Font(new FontFamily(@"Arial"));
             p.Alignment = Alignment.right;
 
-            //var header = documento.Headers.odd;
-
-            //var p = header.Paragraphs.Last() ?? header.InsertParagraph();
-
-            //p.Append(folio).Bold().FontSize(12).Font(new FontFamily(@"Arial"));
-
-            //p.Alignment = Alignment.right;
-
-            //header.InsertParagraph();
-
             documento.Save();
+
+            Console.WriteLine("Inserción del folio completa.");
+            Console.ReadLine();
         }
     }
 }
