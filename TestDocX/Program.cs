@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Drawing;
 using System.Linq;
-//using Xceed.Document.NET;
-//using Xceed.Words.NET;
 using Novacode;
+
 
 namespace TestDocX
 {
@@ -23,6 +22,8 @@ namespace TestDocX
 
             //InsertarFolioALaDerecha(documento, folio);
             IncluirFirmaADocumento(documento, firmaDigital, digestionArchivo);
+
+            
         }
 
         static void IncluirFirmaADocumento(DocX documento, string firma, string digestion)
@@ -43,13 +44,13 @@ namespace TestDocX
             //Encabezado Firma
             Cell celdaEncabezado = tabla.Rows[0].Cells[0];
             celdaEncabezado.FillColor = Color.Black;
-            Paragraph parrafoHeader = celdaEncabezado.Paragraphs[0];
+            Novacode.Paragraph parrafoHeader = celdaEncabezado.Paragraphs[0];
             parrafoHeader.Alignment = Alignment.center;
             parrafoHeader.Append("Firma Digital").FontSize(12).Font(new FontFamily(@"Arial"));
 
             //Firma
             Cell celdaFirma = tabla.Rows[1].Cells[0];
-            Paragraph parrafoFirma = celdaFirma.Paragraphs[0];
+            Novacode.Paragraph parrafoFirma = celdaFirma.Paragraphs[0];
             parrafoFirma.Alignment = Alignment.center;
             parrafoFirma.Append(firma).FontSize(12).Font(new FontFamily(@"Arial"));
 
@@ -64,13 +65,13 @@ namespace TestDocX
             Cell celdaEncabezado2 = tabla2.Rows[0].Cells[0];
             celdaEncabezado2.FillColor = Color.Black;
             celdaEncabezado.Width = 2000;
-            Paragraph parrafoHeader2 = celdaEncabezado2.Paragraphs[0];
+            Novacode.Paragraph parrafoHeader2 = celdaEncabezado2.Paragraphs[0];
             parrafoHeader2.Alignment = Alignment.center;
             parrafoHeader2.Append("Digestión Archivo").FontSize(12).Font(new FontFamily(@"Arial"));
 
             //Digestión
             Cell celdaDigestion = tabla2.Rows[1].Cells[0];
-            Paragraph parrafoDigestion = celdaDigestion.Paragraphs[0];
+            Novacode.Paragraph parrafoDigestion = celdaDigestion.Paragraphs[0];
             parrafoDigestion.Alignment = Alignment.center;
             parrafoDigestion.Append(digestion).FontSize(12).Font(new FontFamily(@"Arial"));
 
